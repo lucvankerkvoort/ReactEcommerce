@@ -17,7 +17,9 @@ export const Wrapper = styled.div`
 `;
 
 export const Image = styled.div`
-  background: url(${({ img }) => img});
+  background: url(${({ img }) =>
+    img ||
+    "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png?format=jpg&quality=90&v=1530129081"});
   background-position: center;
   max-height: 20rem;
   min-height: 10rem;

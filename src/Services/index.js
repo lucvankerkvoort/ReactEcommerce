@@ -1,4 +1,5 @@
 import React, { createContext, useReducer } from "react";
+import { uuidv4 } from "./utils";
 const initialState = {
   cart: [],
   product: {},
@@ -79,8 +80,37 @@ export const StateProvider = ({ children }) => {
   const [state, dispatch] = useReducer((state, action) => {
     switch (action.type) {
       case "addToCart": {
+        const copyCart = [...state.cart];
+        const newItem = action.payload;
+        const isInCart = copyCart.some((item) => item.id === newItem.id);
+
+        if (isInCart) {
+          copyCart.forEach((item) => {
+            if (item.id === newItem.id) {
+              return (item.quantity += 1);
+            }
+          });
+        } else {
+          newItem.quantity = 1;
+          copyCart.push(newItem);
+        }
+
         return Object.assign({}, state, {
-          cart: [action.payload, ...state.cart],
+          cart: copyCart,
+        });
+      }
+      case "setQuantity": {
+        const copyCart = [...state.cart];
+        const { id, quantity } = action.payload;
+        copyCart.map((item) => {
+          if (item.id === id) {
+            return (item.quantity = quantity);
+          }
+          return item;
+        });
+
+        return Object.assign({}, state, {
+          cart: copyCart,
         });
       }
       case "removeFromCart": {
@@ -92,6 +122,9 @@ export const StateProvider = ({ children }) => {
         return Object.assign({}, state, { cart: [] });
       }
       case "setInventory": {
+        const newInventory = [...action.payload];
+        newInventory.forEach((item) => (item.id = uuidv4()));
+
         return Object.assign({}, state, { inventory: action.payload });
       }
       case "setProduct": {

@@ -6,8 +6,6 @@ import Item from "../Item";
 const Store = ({ view = "full" }) => {
   const { inventory, cart, product } = useContext(store);
 
-  console.log({ cart }, { product });
-
   return (
     <Wrapper view={view}>
       {inventory.map(({ title, price, img, id }, i) => (

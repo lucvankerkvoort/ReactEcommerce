@@ -16,7 +16,7 @@ const Item = ({ price = 15, title = "Hottoddy", img, id = "12" }) => {
         <h1>{title}</h1>
         <button
           onClick={() =>
-            dispatch({ type: "addToCart", payload: { price, title, img } })
+            dispatch({ type: "addToCart", payload: { price, title, img, id } })
           }
         >
           Add to Cart
