@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
+  position: relative;
   max-width: 40rem;
   background: white;
   position: fixed;
@@ -8,6 +9,7 @@ export const Wrapper = styled.div`
   top: 2rem;
   left: 2rem;
   transition: 0.05s ease-in-out;
+  z-index: 2;
 
   ${({ isOpen }) =>
     !isOpen &&

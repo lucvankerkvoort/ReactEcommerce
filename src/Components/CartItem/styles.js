@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
+  position: relative;
   display: flex;
   box-shadow: 5px 5px 8px gray;
   margin: 1rem;
   justify-content: space-between;
+  border: 2px solid black;
 `;
 
 export const Image = styled.div`
@@ -29,9 +31,18 @@ export const Quantity = styled.div`
   justify-content: center;
   align-items: center;
   width: 30%;
+`;
+
+export const Row = styled.div`
+  display: flex;
+  justify-content: space-around;
   > input {
-    width: 80%;
-    height: 30%;
+    width: 70%;
+    // height: 30%;
     box-shadow: 3px 3px 3px black;
+  }
+  > img {
+    width: 20px;
+    cursor: pointer;
   }
 `;

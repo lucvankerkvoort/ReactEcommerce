@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { store } from "../../Services";
-import { Wrapper, Title, Image, Price } from "./styles";
+import { Wrapper, Title, Image, Price, AddToCart } from "./styles";
 const Item = ({ price = 15, title = "Hottoddy", img, id = "12" }) => {
   const { dispatch } = useContext(store);
   return (
@@ -14,13 +14,13 @@ const Item = ({ price = 15, title = "Hottoddy", img, id = "12" }) => {
       />
       <Title>
         <h1>{title}</h1>
-        <button
+        <AddToCart
           onClick={() =>
             dispatch({ type: "addToCart", payload: { price, title, img, id } })
           }
         >
           Add to Cart
-        </button>
+        </AddToCart>
       </Title>
     </Wrapper>
   );

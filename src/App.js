@@ -1,9 +1,10 @@
 import { useEffect, useContext } from "react";
 import Cart from "./Components/Cart";
 import Store from "./Components/Store";
+import Product from "./Components/Product";
 import { store } from "./Services";
 function App() {
-  const { dispatch, inventory } = useContext(store);
+  const { dispatch, inventory, product } = useContext(store);
 
   useEffect(() => {
     dispatch({ type: "setInventory", payload: inventory });
@@ -11,7 +12,7 @@ function App() {
 
   return (
     <div className="App">
-      <Store />
+      {Object.keys(product).length > 0 ? <Product /> : <Store />}
       <Cart />
     </div>
   );

@@ -114,8 +114,9 @@ export const StateProvider = ({ children }) => {
         });
       }
       case "removeFromCart": {
+        const { id } = action.payload;
         return Object.assign({}, state, {
-          cart: state.cart.filter((item) => item !== action.payload),
+          cart: state.cart.filter((item) => item.id !== id),
         });
       }
       case "clearCart": {
@@ -130,8 +131,11 @@ export const StateProvider = ({ children }) => {
       case "setProduct": {
         return Object.assign({}, state, { product: action.payload });
       }
+      case "removeProduct": {
+        return Object.assign({}, state, { product: {} });
+      }
       default:
-        throw new Error();
+        throw new Error("end of switch statement at Context store");
     }
   }, initialState);
 
